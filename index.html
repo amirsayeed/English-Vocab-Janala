@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/d683e928ca.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>English Janala</title>
+</head>
+
+<body>
+    <header>
+        <div id="nav" class="hidden navbar border border-[#C6BDBD] bg-transparent backdrop-blur-2xl fixed top-0 z-10">
+            <div class="flex-1">
+                <h1 class="text-2xl flex items-center">
+                    <span class="font-semibold">English</span>
+                    <span><img src="./assets/logo.png" alt=""></span>
+                    <span class="tiro-bangla font-normal">জানালা</span>
+                </h1>
+            </div>
+            <div class="flex-none">
+                <div class="flex gap-2 poppins">
+                    <button class="hidden md:flex btn rounded-lg hover:bg-[#422AD5] text-[#422AD5] hover:text-white">
+                        <a href="#faq">
+                            <span><i class="fa-solid fa-circle-question"></i></span>
+                            <span class="font-semibold text-sm">FAQ</span>
+                        </a>
+                    </button>
+                    <button class="hidden md:flex btn rounded-lg hover:bg-[#422AD5] text-[#422AD5] hover:text-white">
+                        <a href="#learn">
+                            <span><i class="fa-solid fa-book-open"></i></span>
+                            <span class="font-semibold text-sm">Learn</span>
+                        </a>
+                    </button>
+                    <button onclick="logout()"
+                        class="btn rounded-lg hover:bg-[#422AD5] text-[#422AD5] hover:text-white">
+                        <span><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                        <span class="font-semibold text-sm">Logout</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="banner" class="max-w-7xl mx-auto flex flex-col md:flex-row justify-around items-center gap-8 poppins">
+            <div class="flex flex-col gap-8">
+                <div class="space-y-5 max-w-2xl">
+                    <h1 class="text-5xl font-bold text-[#18181B]"><span class="text-[#00BCFF]">English</span> is Easy!!
+                    </h1>
+                    <p class="text-2xl text-[#18181B] font-medium hind-siliguri">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু
+                        করুন। আপনি যদি
+                        নতুন হন অথবা
+                        আপনার
+                        দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons
+                        আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+                </div>
+                <div>
+                    <form class="flex flex-col space-y-3">
+                        <input id="name" type="text" class="input text-[#18181B80]" placeholder="Enter your name" />
+                        <input id="pass" type="password" class="input text-[#18181B80]" placeholder="Password" />
+                        <button id="get-start" class="btn bg-[#422AD5] text-white max-w-36 font-semibold rounded-lg">Get
+                            Started</button>
+                    </form>
+                </div>
+            </div>
+            <div>
+                <img class="w-full h-full object-cover" src="./assets/hero-student.png" alt="">
+            </div>
+        </div>
+    </header>
+    <main id="main" class="max-w-7xl mx-auto hidden">
+        <section id="learn" class="mt-28 scroll-mt-24">
+            <h2 class="text-[#18181B] text-4xl text-center font-bold"><span class="text-[#00BCFF]">Let's</span> Learn
+                Vocabularies
+            </h2>
+            <div id="lesson-category-container" class="flex flex-wrap justify-center gap-5 my-10">
+
+            </div>
+
+            <div id="loading" class="text-center hidden">
+                <span class="loading loading-dots loading-xs"></span>
+                <span class="loading loading-dots loading-sm"></span>
+                <span class="loading loading-dots loading-md"></span>
+                <span class="loading loading-dots loading-lg"></span>
+                <span class="loading loading-dots loading-xl"></span>
+            </div>
+            <div id="lesson-words-container"
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-[#F8F8F8] p-5">
+                <div id="default"
+                    class="col-span-full flex flex-col justify-center items-center p-10 gap-3 hind-siliguri">
+                    <p class="font-normal text-sm text-[#79716B]">আপনি এখনো কোন Lesson Select করেননি</p>
+                    <h3 class="text-3xl font-medium text-[#292524]">একটি Lesson Select করুন।</h3>
+                </div>
+            </div>
+
+            <dialog id="word_details" class="modal">
+                <div class="modal-box">
+                    <div id="details-container" class="rounded-xl">
+
+                    </div>
+
+                    <div class="modal-action justify-start">
+                        <form method="dialog">
+                            <button class="btn bg-[#422AD5] text-white rounded-xl">Complete Learning</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+        </section>
+        <section id="faq" class="mt-40 poppins scroll-mt-24">
+            <h2 class="text-4xl text-center font-bold text-[#18181B]"><span class="text-[#00BCFF]">Frequently</span>
+                Asked
+                Questions</h2>
+            <div class="my-20 space-y-5">
+                <div class="collapse collapse-plus bg-[#F8F8F8] border rounded-xl border-base-300">
+                    <input type="radio" name="my-accordion-3" checked="checked" />
+                    <div class="collapse-title font-medium">Write the difference between var, let, and const</div>
+                    <div class="collapse-content text-[#62748E]">"Var" is function scoped meaning it is accessible
+                        throughout the function it is defined and used to store values, can be reassigned and redeclared
+                        whereas "let" and "const" are limited to the block where they are declared. Further they can't
+                        be redeclared. However "let" allows reassignment but a variable once declared as "const" it's
+                        data can't be changed but in the case of array or object declared as "const" can be modified. A
+                        variable declared as "var" is hoisted to the top of their scope making it accessible before
+                        declaration but shows undefined. On the contrary "let" and "const" are hoisted but returns
+                        reference error if accessed before being declared.</div>
+                </div>
+                <div class="collapse collapse-plus bg-[#F8F8F8] border rounded-xl border-base-300">
+                    <input type="radio" name="my-accordion-3" />
+                    <div class="collapse-title font-medium">Write The difference between map(), forEach() and
+                        filter().
+                    </div>
+                    <div class="collapse-content text-[#62748E]">
+                        map(), forEach() and filter() each of the method is used to loop through each element in a array
+                        and based on condition can return a new array or not. map() performs operation on each element
+                        and then returns a new array such as doubling the elements of an array and return the new array.
+                        forEach() also excute a function on each element of the array but always return undefined.
+                        filter() performs an operation on each elements of the array to filter out the elements that
+                        pass the condition and returns them in a new array.
+                    </div>
+                </div>
+                <div class="collapse collapse-plus bg-[#F8F8F8] border rounded-xl border-base-300">
+                    <input type="radio" name="my-accordion-3" />
+                    <div class="collapse-title font-medium">Explain arrow functions and how they are different from
+                        regular functions.</div>
+                    <div class="collapse-content text-[#62748E] space-y-1">
+                        <h1 class="text-lg font-medium">Regular Function:</h1>
+                        <p>function add(a,b){<br>
+                            return a+b;<br>
+                            }</p>
+                        <h1 class="text-lg font-medium"> Arrow Function:</h1>
+                        <p>const add = (a,b) => a+b;</p>
+                        <p>How arrow function is different from regular function is given below:</p>
+                        <ul class="list-disc list-inside">
+                            <li>Arrow function have implicit return incase of single line expression whereas regular
+                                function always need an explicit return.</li>
+                            <li>Arrow function can't be used as constructors whereas regular function can be.</li>
+                            <li>Arrow function doesn't have arguments object which regular function have</li>
+                            <li>Arrow functions don't create their own "this" binding but inherit it from the parent
+                                scope, whereas regular functions
+                                define their own "this" value based on how they're called.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="collapse collapse-plus bg-[#F8F8F8] border rounded-xl border-base-300">
+                    <input type="radio" name="my-accordion-3" />
+                    <div class="collapse-title font-medium">How JavaScript Promises work?</div>
+                    <div class="collapse-content text-[#62748E]">
+                        <p>Promises in Javascript are used to handle asynchronous operation by giving a value which can
+                            be available later or not. A promise maybe resolved or rejected with three states such as
+                            pending, fullfilled or rejected. A promise being resolved triggers .then() for success and
+                            .catch() is triggered for rejected.</p><br>
+                        <div>
+                            const myLoader = () =>{<br>
+                            return new Promise((resolve,reject) => {<br>
+                            const success = Math.random();<br>
+
+                            if(success > 0.5){<br>
+                            resolve(success);<br>
+                            }else{<br>
+                            reject(success);<br>
+                            }<br>
+                            })<br>
+                            }<br>
+
+                            myLoader().then(data=>console.log('resolved data',data))<br>
+                            .catch(err => console.log('rejected data',err));
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse collapse-plus bg-[#F8F8F8] border rounded-xl border-base-300">
+                    <input type="radio" name="my-accordion-3" />
+                    <div class="collapse-title font-medium">How closures work in JavaScript?</div>
+                    <div class="collapse-content text-[#62748E] space-y-1">
+                        <p>Closures in JS refers to the term when a function is defined within a function but it has
+                            access to the variable of the
+                            outer function's scope even after outer function's scope has been executed.</p>
+                        <div>
+                            function kitchen(){<br>
+                            let roaster = 0;<br>
+                            return function(){<br>
+                            roaster++;<br>
+                            return roaster;<br>
+                            }<br>
+                            }<br>
+
+                            const firstServer = kitchen();<br>
+                            console.log(firstServer());<br>
+                            console.log(firstServer());<br>
+                            console.log(firstServer());<br>
+                        </div>
+                        <p>Here firstServer is assigned the outer function kitchen() which has a roaster variable and
+                            returns a function which has access to roaster variable, increments the roaster variable and
+                            returns it. The output will be 1, 2 and 3 as the inner function remembers the roaster
+                            variable each time and increments it. </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer id="footer"
+        class="footer sm:footer-horizontal bg-[#FFFFFF] border-t-2 border-[#FFEBEB] text-black items-center py-10 px-4">
+        <aside class="flex flex-col gap-2">
+            <p class="text-xl flex items-center font-medium poppins">
+                <span class="font-semibold text-[#18181B]">English</span>
+                <span><img class="w-10" src="./assets/logo.png" alt=""></span>
+                <span class="tiro-bangla font-normal text-[#000000]">জানালা</span>
+            </p>
+
+            <p class="hind-siliguri text-lg font-medium">ইংরেজি শিখুন সহজে</p>
+            <p class="hind-siliguri font-normal text-[#000000]">Providing ED-Tech Applications since 2025</p>
+        </aside>
+
+        <nav class="md:justify-self-end">
+            <h3 class="footer-title">Follow us</h3>
+            <div class="flex gap-3">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook fa-xl"></i></a>
+                <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube fa-xl"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram fa-xl"></i></a>
+            </div>
+        </nav>
+    </footer>
+
+</body>
+
+</html>
